@@ -15,6 +15,7 @@ public class calculatorclient {
 
 	public static void main(String[] args) {
 
+		// Bypass no security manager exception with dangerous implementation
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new BadSecurityManager());
 		}

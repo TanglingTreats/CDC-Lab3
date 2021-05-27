@@ -15,6 +15,7 @@ public class calculatorserver {
 
 	// calculatorserver constructor
 	public calculatorserver() {
+		// Sets hostname property for rmi lookup 
 		System.setProperty("java.rmi.server.hostname", reg_host);
 		try {
 			// Starts registry from here instead of doing it in terminal

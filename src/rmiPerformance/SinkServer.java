@@ -9,6 +9,7 @@ public class SinkServer {
 	private static int server_port = 1099;
 
 	public SinkServer() {
+		// Sets hostname property for rmi lookup 
 		System.setProperty("java.rmi.server.hostname", server_host);
 		
 		try
