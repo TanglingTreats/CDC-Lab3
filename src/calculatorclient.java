@@ -14,6 +14,7 @@ import java.rmi.NotBoundException; //Import the NotBoundException class so you c
 public class calculatorclient {
 
 	public static void main(String[] args) {
+
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new BadSecurityManager());
 		}
@@ -36,8 +37,7 @@ public class calculatorclient {
 
 			// Create the reference to the remote object through the remiregistry
 			System.out.println(String.format(path, reg_host, reg_port));
-//			calculator c = (calculator) Naming.lookup(String.format(path, reg_host, reg_port));
-			calculator c = (calculator) Naming.lookup("rmi://"+reg_host+":"+reg_port+"/CalculatorService");
+			calculator c = (calculator) Naming.lookup(String.format(path, reg_host, reg_port));
 			System.out.println("Lookup successful");
 			// Naming.lookup("rmi://localhost/CalculatorService");
 

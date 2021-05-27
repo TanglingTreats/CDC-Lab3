@@ -10,22 +10,20 @@ import java.rmi.registry.LocateRegistry;
 public class calculatorserver {
 	String path_port="rmi://%s:%d/CalculatorService";
 	String path="rmi://%s/CalculatorService";
-	String reg_host = "localhost";
+	String reg_host = "192.168.1.18";
 	static int port = 1099;
 
 	// calculatorserver constructor
 	public calculatorserver() {
-		System.setProperty("java.rmi.server.hostname", "192.168.1.18");
+		System.setProperty("java.rmi.server.hostname", reg_host);
 		try {
+			// Starts registry from here instead of doing it in terminal
 			LocateRegistry.createRegistry(port);
 			calculator c = new calculatorimpl();
-//			Naming.rebind(String.format(path, reg_host), c);
+
 			Naming.rebind(String.format(path_port, reg_host, port), c);
 			System.out.println(String.format(path_port, reg_host, port));
-//			System.setProperty("java.security.policy", "AllPermission.policy");
-//			if (System.getSecurityManager() == null) {
-//				System.setSecurityManager(new SecurityManager());
-//			}
+
 			// Construct a new CalculatorImpl object and bind it to the local rmiregistry
 			// N.b. it is possible to host multiple objects on a server
 			
@@ -36,10 +34,7 @@ public class calculatorserver {
 	}
 
 	public static void main(String args[]) {
-//		if (System.getSecurityManager() == null) {
-//			System.setSecurityManager(new BadSecurityManager());
-//			System.setProperty("java.security.policy", "AllPermission.Policy");
-//		}
+
 		// Create the new Calculator server
 		if (args.length == 1)
 			port = Integer.parseInt(args[0]);
