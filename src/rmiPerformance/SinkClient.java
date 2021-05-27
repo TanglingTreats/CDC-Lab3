@@ -16,6 +16,13 @@ public class SinkClient {
 
 	public static void main (String[] args) {
 
+		if (args.length == 1) {
+			server_port = Integer.parseInt(args[0]);
+		} else if (args.length == 2) {
+			server_host = args[0];
+			server_port = Integer.parseInt(args[1]);
+		}
+
 		try
 		{
 			IntSink s = (IntSink) Naming.lookup(String.format(path, server_host, server_port));
